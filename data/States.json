@@ -1,4 +1,5 @@
 [
 null,
-{"id":1,"autoRemovalTiming":2,"chanceByDamage":100,"traits":[],"iconIndex":0,"maxTurns":10,"message1":"","message2":"","message3":"","message4":"","minTurns":10,"motion":0,"name":"Death","note":"","overlay":0,"priority":50,"removeAtBattleEnd":false,"removeByDamage":false,"removeByRestriction":false,"removeByWalking":false,"restriction":0,"stepsToRemove":100}
+{"id":1,"autoRemovalTiming":2,"chanceByDamage":100,"traits":[],"iconIndex":0,"maxTurns":10,"message1":"","message2":"","message3":"","message4":"","minTurns":10,"motion":0,"name":"Death","note":"","overlay":0,"priority":50,"removeAtBattleEnd":false,"removeByDamage":false,"removeByRestriction":false,"removeByWalking":false,"restriction":0,"stepsToRemove":100},
+{"id":2,"autoRemovalTiming":2,"chanceByDamage":100,"traits":[],"iconIndex":0,"maxTurns":2,"message1":"","message2":"","message3":"","message4":"","minTurns":2,"motion":1,"name":"Shield Broken","note":"","overlay":5,"priority":50,"removeAtBattleEnd":false,"removeByDamage":false,"removeByRestriction":false,"removeByWalking":false,"restriction":4,"stepsToRemove":100}
 ]

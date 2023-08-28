@@ -640,7 +640,7 @@ Window_WeaknessDisplay.prototype.initialize = function (subject, sprite) {
   this._subject = subject;
   this._sprite = sprite;
   var width = Math.ceil(Graphics.boxWidth / 2);
-  var height = this.fittingHeight(2);
+  var height = this.fittingHeight(2.75); //Default: this.fittingHeight(2);
   this.setCalculationConstants();
   Window_Base.prototype.initialize.call(this, 0, 0, width, height);
   this.createStateIconSprite();
@@ -716,6 +716,7 @@ Window_WeaknessDisplay.prototype.refresh = function () {
   if (!!this._subject) {
     this.drawHpGauge();
     this.drawSubjectName();
+    this.drawShieldGauge();
     this.drawBreakShield();
     this.drawWeaknessIcons();
     if (!!this._stateIconSprite) {
@@ -741,7 +742,7 @@ Window_WeaknessDisplay.prototype.drawHpGauge = function () {
     var rate = this._subject.hpRate();
     var color1 = this.hpGaugeColor1();
     var color2 = this.hpGaugeColor2();
-    this.drawGauge(x, 5, size, rate, color1, color2); // Defaults to 0
+    this.drawGauge(x, 32, size, rate, color1, color2); // Default: (x, 0)
   } else {
     this._hpGaugeWidth = 0;
   }
@@ -762,8 +763,65 @@ Window_WeaknessDisplay.prototype.drawSubjectName = function () {
         this.textColor(Olivia.OctoBattle.WeaknessDisplay.HpColor25)
       );
     }
-    this.drawText(this._subject.name(), 0, 0, this.contentsWidth(), "center");
+    this.drawText(this._subject.name(), 0, 15, this.contentsWidth(), "center"); //Default: (0, 0)
     this.resetFontSettings();
+  }
+};
+
+Window_WeaknessDisplay.prototype.drawShieldGauge = function () {
+  if (Olivia.OctoBattle.WeaknessDisplay.ShowHpGauge) {
+    if (Olivia.OctoBattle.WeaknessDisplay.ShowName) {
+      this.resetFontSettings();
+      this.contents.fontSize = Olivia.OctoBattle.WeaknessDisplay.NameFontSize;
+      var size = this.textWidth(this._subject.name());
+      this.resetFontSettings();
+      size = Math.max(Olivia.OctoBattle.WeaknessDisplay.HpGaugeMinWidth, size);
+    } else {
+      var size = Olivia.OctoBattle.WeaknessDisplay.HpGaugeMinWidth;
+    }
+    size += 2 * Olivia.OctoBattle.WeaknessDisplay.HpGaugePadding;
+    this._hpGaugeWidth = size;
+    var x = Math.round((this.contentsWidth() - size) / 2);
+    if (this._subject.isBreakStunned() || this._subject.hpRate() <= 0) {
+      var rate = 0;
+    } else {
+      var rate =
+        this._subject.currentBreakShield() / this._subject.topBreakShield();
+    }
+    var color1 = this.textColor(8);
+    var color2 = this.textColor(0);
+    this.drawGaugeCustom(x, 20, size, 8, rate, color1, color2, false);
+  } else {
+    this._hpGaugeWidth = 0;
+  }
+};
+
+Window_Base.prototype.drawGaugeCustom = function (
+  x,
+  y,
+  width,
+  height,
+  rate,
+  color1,
+  color2,
+  reverse
+) {
+  if (reverse) {
+    x += width;
+    width = -width;
+  }
+  var fillW = Math.floor(width * rate);
+  var gaugeY = y + this.lineHeight() - 8;
+  this.contents.fillRect(x, gaugeY, width, height, this.gaugeBackColor());
+  if (rate != 0) {
+    this.contents.gradientFillRect(
+      x + 1,
+      gaugeY + 1,
+      fillW - 2,
+      height - 2,
+      color1,
+      color2
+    );
   }
 };
 
@@ -848,7 +906,7 @@ Window_WeaknessDisplay.prototype.drawWeaknessIcons = function () {
   ) {
     var y = 0;
   } else {
-    var y = this.lineHeight();
+    var y = this.lineHeight(); //Default: this.lineHeight();
   }
   var revealed = $gameSystem.getRevealedEnemyWeaknesses(
     this._subject.enemyId()
@@ -867,7 +925,7 @@ Window_WeaknessDisplay.prototype.drawWeaknessIcons = function () {
       var icon = Olivia.OctoBattle.WeaknessDisplay.UnknownIcon;
     }
     if (Olivia.OctoBattle.WeaknessDisplay.SmallWeakIcons) {
-      this.drawSmallIcon(icon, x, y);
+      this.drawSmallIcon(icon, x, y + 32);
     } else {
       this.drawIcon(icon, x, y);
     }
