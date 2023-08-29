@@ -304,30 +304,30 @@ var Olivia = Olivia || {};
 Olivia.OctoBattle = Olivia.OctoBattle || {};
 
 var parameters = $plugins.filter(function (p) {
-  return p.description.contains("<WeaknessDisplay>");
+  return p.description.contains('<WeaknessDisplay>');
 })[0].parameters;
 
 Olivia.OctoBattle.WeaknessDisplay = {
   Enabled: true,
   // Element Data
-  ShownElements: JSON.parse(parameters["Shown Elements"]),
-  ElementIcons: JSON.parse(parameters["Element Icons"]),
-  UnknownIcon: Number(parameters["Unknown Weakness Icon"]),
+  ShownElements: JSON.parse(parameters['Shown Elements']),
+  ElementIcons: JSON.parse(parameters['Element Icons']),
+  UnknownIcon: Number(parameters['Unknown Weakness Icon']),
   // Window
-  AlwaysShow: eval(parameters["Weakness Always Show"]),
-  HideDuration: Number(parameters["Weakness Hide Duration"] || 180),
-  ShowBreakShield: eval(parameters["Weakness Show Break Shield"]),
-  ShowStunTurns: eval(parameters["Weakness Stun Duration"]),
-  ShowHpGauge: eval(parameters["Weakness Show HP Gauge"]),
-  HpGaugeMinWidth: Number(parameters["HP Gauge Minimum Width"] || 100),
-  HpGaugePadding: Number(parameters["HP Gauge Padding"] || 100),
-  ShowName: eval(parameters["Weakness Show Name"]),
-  NameFontSize: Number(parameters["Name Font Size"] || 22),
-  HpColor50: Number(parameters["50% HP Color"] || 17),
-  HpColor25: Number(parameters["25% HP Color"] || 18),
-  ShowStates: eval(parameters["Weakness Show States"] || "true"),
-  SmallWeakIcons: eval(parameters["Small Weakness Icons"]),
-  WeakIconSize: Number(parameters["Weak Icon Size"] || 0.6),
+  AlwaysShow: eval(parameters['Weakness Always Show']),
+  HideDuration: Number(parameters['Weakness Hide Duration'] || 180),
+  ShowBreakShield: eval(parameters['Weakness Show Break Shield']),
+  ShowStunTurns: eval(parameters['Weakness Stun Duration']),
+  ShowHpGauge: eval(parameters['Weakness Show HP Gauge']),
+  HpGaugeMinWidth: Number(parameters['HP Gauge Minimum Width'] || 100),
+  HpGaugePadding: Number(parameters['HP Gauge Padding'] || 100),
+  ShowName: eval(parameters['Weakness Show Name']),
+  NameFontSize: Number(parameters['Name Font Size'] || 22),
+  HpColor50: Number(parameters['50% HP Color'] || 17),
+  HpColor25: Number(parameters['25% HP Color'] || 18),
+  ShowStates: eval(parameters['Weakness Show States'] || 'true'),
+  SmallWeakIcons: eval(parameters['Small Weakness Icons']),
+  WeakIconSize: Number(parameters['Weak Icon Size'] || 0.6)
 };
 
 Olivia.OctoBattle.Weakness = Olivia.OctoBattle.Weakness || {};
@@ -456,9 +456,9 @@ Game_Action.prototype.applyWeaknessAnalyze = function (target) {
       Olivia.OctoBattle.BoostPoint &&
       this.item().note.match(/<(?:BP|Boost) Analyze>/i)
     ) {
-      var rate = this.subject().multiplierForBP("Analyze");
+      var rate = this.subject().multiplierForBP('Analyze');
       times = Math.round(rate * times);
-      times += this.subject().additionForBP("Analyze");
+      times += this.subject().additionForBP('Analyze');
     }
     target.revealNewWeaknesses(times);
   }
@@ -763,7 +763,7 @@ Window_WeaknessDisplay.prototype.drawSubjectName = function () {
         this.textColor(Olivia.OctoBattle.WeaknessDisplay.HpColor25)
       );
     }
-    this.drawText(this._subject.name(), 0, 15, this.contentsWidth(), "center"); //Default: (0, 0)
+    this.drawText(this._subject.name(), 0, 15, this.contentsWidth(), 'center'); //Default: (0, 0)
     this.resetFontSettings();
   }
 };
@@ -946,7 +946,7 @@ Window_WeaknessDisplay.prototype.drawWeaknessIcons = function () {
 };
 
 Window_WeaknessDisplay.prototype.drawSmallIcon = function (iconIndex, x, y) {
-  var bitmap = ImageManager.loadSystem("IconSet");
+  var bitmap = ImageManager.loadSystem('IconSet');
   var pw = Window_Base._iconWidth;
   var ph = Window_Base._iconHeight;
   var sx = (iconIndex % 16) * pw;
