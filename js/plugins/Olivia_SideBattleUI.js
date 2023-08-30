@@ -850,7 +850,7 @@ Window_BattleSkill.prototype.drawItemName = function (item, x, y, width) {
     var iconBoxWidth =
       Math.round(Window_Base._iconWidth * this.scaleRate()) + 4;
     this.resetTextColor();
-    this.drawIcon(item.iconIndex, x + 2, y + 2);
+    this.drawIcon(item.iconIndex, x, y);
     this.drawText(item.name, x + iconBoxWidth, y, width - iconBoxWidth);
     if (Imported.YEP_InstantCast) {
       this.drawInstantIcon(item, x, y, width);

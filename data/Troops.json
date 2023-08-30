@@ -1,4 +1,4 @@
 [
 null,
-{"id":1,"members":[{"enemyId":1,"x":411,"y":304,"hidden":false},{"enemyId":1,"x":294,"y":226,"hidden":false},{"enemyId":1,"x":294,"y":385,"hidden":false}],"name":"Rat*3","pages":[{"conditions":{"actorHp":50,"actorId":1,"actorValid":false,"enemyHp":50,"enemyIndex":0,"enemyValid":false,"switchId":1,"switchValid":false,"turnA":0,"turnB":0,"turnEnding":false,"turnValid":true},"list":[{"code":333,"indent":0,"parameters":[-1,0,3]},{"code":0,"indent":0,"parameters":[]}],"span":0}]}
+{"id":1,"members":[{"enemyId":1,"x":415,"y":289,"hidden":false},{"enemyId":1,"x":323,"y":337,"hidden":false},{"enemyId":1,"x":240,"y":399,"hidden":false}],"name":"Rat*3","pages":[{"conditions":{"actorHp":50,"actorId":1,"actorValid":false,"enemyHp":50,"enemyIndex":0,"enemyValid":false,"switchId":1,"switchValid":false,"turnA":0,"turnB":0,"turnEnding":false,"turnValid":true},"list":[{"code":333,"indent":0,"parameters":[-1,0,3]},{"code":0,"indent":0,"parameters":[]}],"span":0}]}
 ]
