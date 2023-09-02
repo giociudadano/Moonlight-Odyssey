@@ -532,6 +532,7 @@ Window_Base.prototype.drawActorFace = function (actor, x, y, width, height) {
 Window_Base.prototype.drawActorName = function (actor, x, y, width) {
   width = width || 168;
   this.changeTextColor(this.hpColor(actor));
+
   this.drawText(actor.name(), x, y, width);
 };
 

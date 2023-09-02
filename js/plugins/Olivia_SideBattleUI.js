@@ -1081,6 +1081,7 @@ Window_BattleSideName.prototype.initialize = function (
 Window_BattleSideName.prototype.refresh = function () {
   Window_BattleSideBase.prototype.refresh.call(this);
   if (!!this._actor) {
+    this.contents.fontSize = 22;
     this.drawActorName(this._actor, this.textPadding(), 0, this.width);
     this._actorName = this._actor.name();
   }
